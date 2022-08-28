@@ -13,11 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - uses: "finnp/create-file-action@master"
-        env:
-          FILE_NAME: ".npmrc"
-          FILE_DATA: "engine-strict=true"
-
+      - name: Authenticate with private NPM package
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+  
       - name: Install and Build
         run: |
           npm install
