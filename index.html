@@ -17,7 +17,7 @@
 			if (CSS['paintWorklet'] === undefined) {
 				await import('https://unpkg.com/css-paint-polyfill');
 			}
-			CSS.paintWorklet.addModule('/scripts/loading-screen.js');
+			CSS.paintWorklet.addModule('./scripts/loading-screen.js');
 		})();
 	</script>
 </html>
