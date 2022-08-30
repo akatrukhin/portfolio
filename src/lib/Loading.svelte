@@ -1,13 +1,29 @@
 <script>
   import { onMount } from 'svelte';
+  export let startDelay;
+  export let duration;
+  export let sequenceDelay;
   
   let canvasRef;
   
-  const ANIMATION_DURATION = 1400;
-  const ANIMATION_LAYER_DELAY = 150;
-  const AMOUNT_PATH_POINTS = 18;
+  const AMOUNT_PATH_POINTS = 9;
   const PATH_POINT_DELAY = 250;
   
+  const layers = [{ 
+    color: 'rgb(204, 204, 204)', 
+    shape: createPathPoints() 
+  }, {
+    color: 'rgb(230, 229, 234)',
+    shape: createPathPoints() 
+  }, {
+    color: 'rgb(0,0,0)',
+    shape: createPathPoints()  
+  }];
+  
+  function easeCubicInOut(t) {
+    return t * t * t;
+  }
+
   function createPathPoints() {
     return 	Array.from(
     { length: AMOUNT_PATH_POINTS },
@@ -15,31 +31,12 @@
     );
   }
   
-  const layers = [{
-    color: 'rgb(230, 229, 234)',
-    shape: createPathPoints() 
-  },{ 
-    color: 'rgb(204, 204, 204)', 
-    shape: createPathPoints() 
-  }, {
-    color: 'rgb(0,0,0)',
-    shape: createPathPoints()  
-  }];
-  
-  console.log({layers})
-  
-  const ease = {
-    cubicInOut: (t) => {
-      return t * t * t;
-    }
-  };
-  
   const updatePath = (time, width, height, delayPointsArray) => {
     const points = [];
     for (let i = 0; i < AMOUNT_PATH_POINTS + 1; i++) {
       points[i] =
-      ease.cubicInOut(
-      Math.min(Math.max(time - delayPointsArray[i], 0) / ANIMATION_DURATION, 1)
+      easeCubicInOut(
+      Math.min(Math.max(time - delayPointsArray[i], 0) / duration, 1)
       ) * height;
     }
     
@@ -55,8 +52,11 @@
   }
   
   onMount(() => {
-    let frame = requestAnimationFrame(loop);
-    let p;
+    let frame;
+
+    setTimeout(() => {
+      frame = requestAnimationFrame(loop)
+    }, startDelay);
     
     function loop(t) {
       frame = requestAnimationFrame(loop)
@@ -67,8 +67,8 @@
         ctx.strokeStyle = layers[i].color;
         ctx.fillStyle = layers[i].color;
         
-        p = new Path2D(
-        updatePath(t + ANIMATION_LAYER_DELAY * i, canvasRef.width, canvasRef.height, layers[i].shape)
+        const p = new Path2D(
+        updatePath(t - startDelay + sequenceDelay * i, canvasRef.width, canvasRef.height, layers[i].shape)
         );
         
         ctx.stroke(p);
@@ -79,16 +79,14 @@
     
     setTimeout(() => {
       cancelAnimationFrame(frame)
-    }, ANIMATION_DURATION + ANIMATION_LAYER_DELAY * layers.length);
+    }, startDelay + duration + sequenceDelay * layers.length);
   });
 </script>
 
 
 <canvas 
-bind:this={canvasRef} 
-width={1280}
-height={800}
-class="w-screen h-screen">
+  bind:this={canvasRef} 
+  width={1280}
+  height={800}
+  class="w-screen fixed z-50 h-screen dark:invert">
 </canvas>
-
-
