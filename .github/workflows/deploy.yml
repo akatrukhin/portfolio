@@ -25,7 +25,7 @@ jobs:
         run: yarn
 
       - name: Build
-        run: yarn build
+        run: yarn github
 
       - name: Archive build
         if: success()

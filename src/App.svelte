@@ -1,5 +1,9 @@
 <script>
+  import { Router, Route, Link } from "svelte-routing";
   import Loading from './lib/Loading.svelte';
+  import About from './routes/About.svelte';
+
+  export let url = "";
 
   const LOADING_MOUNT_DELAY = 1000;
   const LOADING_ANIMATION_DURATION = 1400;
@@ -21,7 +25,10 @@
 
 <main class="h-screen w-screen flex flex-col overflow-x-hidden overflow-scroll" class:initBackground="{!didLoadingComponentMount}">
   <div class="flex flex-col w-full h-full bg-white dark:bg-zinc-800">
-    Hello
+    <Router url="{url}">
+      <Link to="/">Home</Link>
+      <Route path="/"><About /></Route>
+    </Router>
   </div>
   {#if !isAnimationLoadingPlayed}
     <Loading startDelay={LOADING_MOUNT_DELAY} duration={LOADING_ANIMATION_DURATION} sequenceDelay={LOADING_ANIMATION_SEQUENCE_DELAY} />
