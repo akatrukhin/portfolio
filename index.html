@@ -10,12 +10,4 @@
 		<div id="app"></div>
 		<script type="module" src="/src/main.js"></script>
 	</body>
-	<script>
-		(async function () {
-			if (CSS['paintWorklet'] === undefined) {
-				await import('https://unpkg.com/css-paint-polyfill');
-			}
-			CSS.paintWorklet.addModule('./scripts/loading-screen.js');
-		})();
-	</script>
 </html>
