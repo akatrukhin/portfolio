@@ -1,17 +1,16 @@
-<script>
+<script lang="ts">
   import { Router, Route } from "svelte-routing";
   import Loading from './lib/Loading.svelte';
   import Header from './lib/Header.svelte';
-  import About from './routes/About.svelte';
-  import Portfolio from "./routes/Portfolio.svelte";
+  import LazyComponent from "./lib/LazyComponent.svelte";
+  import { routes } from "./routes/utils"
 
-  export let url = "";
   let main;
   let scrollY = 0;
 
   const LOADING_MOUNT_DELAY = 1000;
-  const LOADING_ANIMATION_DURATION = 1400;
-  const LOADING_ANIMATION_SEQUENCE_DELAY = 150;
+  const LOADING_ANIMATION_DURATION = 2000;
+  const LOADING_ANIMATION_SEQUENCE_DELAY = 300;
 
   let didLoadingComponentMount = false;
   let isAnimationLoadingPlayed = false;
@@ -23,7 +22,6 @@
   setTimeout(() => {
     isAnimationLoadingPlayed = true
   }, LOADING_MOUNT_DELAY + LOADING_ANIMATION_DURATION + LOADING_ANIMATION_SEQUENCE_DELAY * 3);
-
 </script>
 
 <main class="h-screen w-screen flex flex-col text-base">
@@ -35,10 +33,18 @@
         scrollY = main.scrollTop
       }} 
   >
-    <Router url="{url}">
+    <Router>
       <Header scrollY={scrollY} />
-      <Route path="/"><About /></Route>
-      <Route path="/portfolio"><Portfolio /></Route>
+
+      {#each routes as page}      
+        <Route path={page.route}>
+          <LazyComponent 
+	          when={page.route === window.location.pathname}
+	          component={() => import(page.component)} 
+          />
+        </Route>
+      {/each}
+
     </Router>
   </div>
   {#if !isAnimationLoadingPlayed}

@@ -58,7 +58,7 @@
     }, startDelay);
     
     function loop(t) {
-      frame = requestAnimationFrame(loop)
+      if (!canvasRef) return;
       const ctx = canvasRef.getContext('2d');
       ctx.clearRect(0, 0, canvasRef.width, canvasRef.height);
       
@@ -73,7 +73,7 @@
         ctx.stroke(p);
         ctx.fill(p);
       }
-      
+      frame = requestAnimationFrame(loop)
     }
     
     setTimeout(() => {
