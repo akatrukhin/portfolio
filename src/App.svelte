@@ -2,7 +2,7 @@
   import { Router, Route } from "svelte-routing";
   import Loading from './lib/Loading.svelte';
   import Header from './lib/Header.svelte';
-  import LazyComponent from "./lib/LazyComponent.svelte";
+  import LazyComponent from "./lib/Loading copy.svelte";
   import { routes } from "./routes/utils"
 
   let main;
@@ -40,7 +40,7 @@
         <Route path={page.route}>
           <LazyComponent 
 	          when={page.route === window.location.pathname}
-	          component={() => import(page.component)} 
+	          component={() => import(`./routes/${page.name}.svelte`)} 
           />
         </Route>
       {/each}
