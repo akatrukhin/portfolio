@@ -8,7 +8,7 @@ const production = process.env.BUILD_ENV || false;
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	base: production ? '/portfolio/' : '',
+	base: production ? 'https://akatrukhin.github.io/portfolio/' : '',
 	plugins: [
 		svelte({ preprocess: autoPreprocess() }),
 		typescript({ sourceMap: !production }),
