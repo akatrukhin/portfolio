@@ -1,9 +1,13 @@
 <script>
-  import { Router, Route, Link } from "svelte-routing";
+  import { Router, Route } from "svelte-routing";
   import Loading from './lib/Loading.svelte';
+  import Header from './lib/Header.svelte';
   import About from './routes/About.svelte';
+  import Portfolio from "./routes/Portfolio.svelte";
 
   export let url = "";
+  let main;
+  let scrollY = 0;
 
   const LOADING_MOUNT_DELAY = 1000;
   const LOADING_ANIMATION_DURATION = 1400;
@@ -22,12 +26,19 @@
 
 </script>
 
-
-<main class="h-screen w-screen flex flex-col overflow-x-hidden overflow-scroll" class:initBackground="{!didLoadingComponentMount}">
-  <div class="flex flex-col w-full h-full bg-white dark:bg-zinc-800">
+<main class="h-screen w-screen flex flex-col text-base">
+  <div 
+    class="flex flex-col w-full h-full overflow-x-hidden overflow-scroll transition-opacity duration-100 ease-out bg-zinc-100 dark:bg-zinc-800" class:opacity-0={!didLoadingComponentMount} 
+    bind:this={main} 
+    on:scroll={
+      () => {
+        scrollY = main.scrollTop
+      }} 
+  >
     <Router url="{url}">
-      <Link to="/">Home</Link>
+      <Header scrollY={scrollY} />
       <Route path="/"><About /></Route>
+      <Route path="/portfolio"><Portfolio /></Route>
     </Router>
   </div>
   {#if !isAnimationLoadingPlayed}
@@ -35,8 +46,4 @@
   {/if}
 </main>
 
-<style>
-  .initBackground {
-    @apply bg-black dark:bg-white;
-  }
-</style>
+<svelte:window bind:scrollY={scrollY} />

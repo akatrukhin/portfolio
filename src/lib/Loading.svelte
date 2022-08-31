@@ -5,25 +5,24 @@
   export let sequenceDelay;
   
   let canvasRef;
+
   
+  const LIGHT_LAYER_COLORS = ['rgb(204, 204, 204)', 'rgb(0, 0, 0)','rgb(255,255,255)'];
+  const DARK_LAYER_COLORS= ['rgb(204, 204, 204)', 'rgb(230, 229, 234)','rgb(0,0,0)'];
   const AMOUNT_PATH_POINTS = 9;
   const PATH_POINT_DELAY = 250;
   
-  const layers = [{ 
-    color: 'rgb(204, 204, 204)', 
-    shape: createPathPoints() 
-  }, {
-    color: 'rgb(230, 229, 234)',
-    shape: createPathPoints() 
-  }, {
-    color: 'rgb(0,0,0)',
-    shape: createPathPoints()  
-  }];
+  
+  const layers= Array.from(
+  window.matchMedia("(prefers-color-scheme: dark)").matches ? 
+  DARK_LAYER_COLORS : LIGHT_LAYER_COLORS, 
+  (color) => ({color, shape: createPathPoints() }) 
+  );
   
   function easeCubicInOut(t) {
     return t * t * t;
   }
-
+  
   function createPathPoints() {
     return 	Array.from(
     { length: AMOUNT_PATH_POINTS },
@@ -53,7 +52,7 @@
   
   onMount(() => {
     let frame;
-
+    
     setTimeout(() => {
       frame = requestAnimationFrame(loop)
     }, startDelay);
@@ -85,8 +84,8 @@
 
 
 <canvas 
-  bind:this={canvasRef} 
-  width={1280}
-  height={800}
-  class="w-screen fixed z-50 h-screen dark:invert">
+bind:this={canvasRef} 
+width={1280}
+height={800}
+class="w-screen fixed z-50 h-screen">
 </canvas>

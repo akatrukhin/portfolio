@@ -2,7 +2,16 @@ const config = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 
 	theme: {
-		extend: {}
+		extend: {
+			fontSize: {
+				tiny: [
+					'.5rem',
+					{
+						letterSpacing: '-0.01rem'
+					}
+				]
+			}
+		}
 	},
 
 	plugins: []
