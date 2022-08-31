@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   build:
-    name: Build and Test
+    name: Build and Deploy 🚀
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️

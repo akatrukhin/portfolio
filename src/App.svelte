@@ -25,10 +25,10 @@
   }, LOADING_MOUNT_DELAY + LOADING_ANIMATION_DURATION);
 </script>
 
-<div class="h-screen w-screen flex flex-col text-base selection:bg-teal-400 dark:selection:bg-teal-500">
+<div class="h-screen w-screen flex flex-col text-base selection:bg-teal-400">
   {#if didLoadingComponentMount}
   <div 
-    class="flex flex-col h-screen w-screen overflow-x-hidden overflow-scroll bg-zinc-100 dark:bg-zinc-800" class:opacity-0={!didLoadingComponentMount} 
+    class="flex flex-col h-screen w-screen overflow-x-hidden overflow-scroll bg-zinc-100" class:opacity-0={!didLoadingComponentMount} 
     bind:this={main} 
     on:scroll={
     () => {

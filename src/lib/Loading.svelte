@@ -13,11 +13,13 @@
   const PATH_POINT_DELAY = 250;
   
   
-  const layers= Array.from(
-  window.matchMedia("(prefers-color-scheme: dark)").matches ? 
-  DARK_LAYER_COLORS : LIGHT_LAYER_COLORS, 
-  (color) => ({color, shape: createPathPoints() }) 
-  );
+  // const layers= Array.from(
+  // window.matchMedia("(prefers-color-scheme: dark)").matches ? 
+  // DARK_LAYER_COLORS : LIGHT_LAYER_COLORS, 
+  // (color) => ({color, shape: createPathPoints() }) 
+  // );
+
+  const layers = Array.from(LIGHT_LAYER_COLORS, (color) => ({color, shape: createPathPoints() }))
   
   function easeCubicInOut(t) {
     return t * t * t;
