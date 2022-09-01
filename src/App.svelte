@@ -3,7 +3,7 @@
   import { fade } from 'svelte/transition';
   import Loading from './lib/Loading.svelte';
   import Header from './lib/Header.svelte';
-  import LazyComponent from "./lib/Loading copy.svelte";
+  import LazyComponent from "./lib/LazyComponent.svelte";
   import { routes } from "./routes/utils"
   
   let main;
