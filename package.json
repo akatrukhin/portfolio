@@ -1,8 +1,33 @@
 {
 	"name": "you-need-dev-like.me",
+	"description": "Portfolio website",
 	"version": "0.0.0",
 	"type": "module",
-	"license": "GNU General Public License v3.0",
+	"license": "CC-BY-4.0",
+	"author": {
+		"name": "Alexander Katrukhin",
+		"email": "a.katrukhin@gmail.com",
+		"github": "akatrukhin"
+	},
+	"publish": [
+		{
+			"provider": "github",
+			"owner": "akatrukhin",
+			"repo": "portfolio"
+		}
+	],
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/akatrukhin/portfolio.git"
+	},
+	"keywords": [
+		"Porfolio",
+		"Developer",
+		"Front-End",
+		"UX Engineer",
+		"Design Technologist",
+		"Alexander Katrukhin"
+	],
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
