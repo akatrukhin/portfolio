@@ -4,6 +4,12 @@ const config = {
 	theme: {
 		extend: {
 			fontSize: {
+				xxs: [
+					'.65rem',
+					{
+						letterSpacing: '-0.01rem'
+					}
+				],
 				tiny: [
 					'.5rem',
 					{
@@ -15,6 +21,6 @@ const config = {
 	},
 
 	plugins: []
-};
+}
 
-module.exports = config;
+module.exports = config

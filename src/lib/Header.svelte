@@ -1,64 +1,71 @@
 <script>
-  import { Link } from "svelte-routing";
-  import { fly } from 'svelte/transition';
-  import { onDestroy } from "svelte";
-  export let scrollY;
-  
-  const SCROLL_GAP = 64;
-  const EMPTY_STRING = ""
-  
-  $: scrolledLogoClasses = scrollY > SCROLL_GAP ? "-translate-x-[3vw] -translate-y-[3vh]" : EMPTY_STRING;
-  $: scrolledNavClasses = scrollY > SCROLL_GAP ? "-translate-y-[3vh]" : EMPTY_STRING;
-  $: scrolledContactsClasses = scrollY > SCROLL_GAP ? "translate-x-[3vw] -translate-y-[3vh]" : EMPTY_STRING;
-  
-  const nav = [{
-    name: 'Home',
-    path: '/'
-  }, {
-    name: 'Portfolio',
-    path: '/portfolio'
-  }, {
-    name: 'Articles',
-    path: '/articles'
-  }]
-  
-  const positions = ['UX Engineer', 'Design Technologist', 'UI Developer']
-  let positionIndex = 0;
-  let position = positions[positionIndex];
-  
-  const positionInterval = setInterval(() => {
-    if (positionIndex === positions.length - 1) {
-      positionIndex = -1;
-    }
-    position = positions[++positionIndex]
-  }, 5000)
-  
-  onDestroy(() => {
-    clearInterval(positionInterval);
-  })
+	import { Link } from 'svelte-routing'
+	import { fly } from 'svelte/transition'
+	import { onDestroy } from 'svelte'
+
+	export let scrollY
+
+	const SCROLL_GAP = 64
+	const UPDATE_INTERVAL_MS = 5000
+
+	$: transformClass = scrollY > SCROLL_GAP ? 'apply-transform' : ''
+
+	const positions = [
+		'UX Engineer',
+		'Design Technologist',
+		'UI Developer',
+		'Front-end Developer',
+		'Fullstack Developer',
+		'Enthusiast'
+	]
+	let positionIndex = getRandomIndex(positions.length)
+
+	const positionInterval = setInterval(() => {
+		positionIndex = getRandomIndex(positions.length)
+	}, UPDATE_INTERVAL_MS)
+
+	function getRandomIndex(length) {
+		return Math.floor(Math.random() * length)
+	}
+
+	onDestroy(() => clearInterval(positionInterval))
 </script>
 
-<header class="backdrop-blur-lg top-0 sticky z-40 w-full">
-  <div class="flex items-center justify-between max-w-[1800px] px-[7vw] pt-[7vh] mx-auto">
-    <Link to="/" class="text-2xl transform transition-transform duration-200 {scrolledLogoClasses}">
-      <span class="l">Alexander</span><span class="b">Katrukhin</span>
-      <div class="text-xs leading-4 uppercase opacity-50 m tracking-widest">
-        {#key position}
-        <span style="display: inline-block" in:fly={{ y: -20 }}>
-          {position}
-        </span>
-        {/key}
-      </div>
-    </Link>
-    
-    <nav class="grid gap-[7vw] grid-cols-3 grid-rows-1 sb transform transition-transform duration-200 {scrolledNavClasses}">
-      {#each nav as link}
-      <Link to={link.path} class="hover:bg-white rounded-2xl py-2 px-4 hover:shadow-lg transform transition-all ease-in-out duration-200 text-center inline hover:-translate-y-1">{link.name}</Link>
-      {/each}
-    </nav>
-    
-    <div class="transform transition-transform duration-200 {scrolledContactsClasses}">
-      <a href="mailto:a.katrukhin@gmail.com" class="text-xs leading-4 uppercase opacity-50 m tracking-widest">a.katrukhin@gmail.com</a>
-    </div>
-  </div>
+<header class="backdrop-blur-lg top-0 sticky z-40 w-full text-sm">
+	<div class="flex items-center justify-between max-w-[1800px] px-[7vw] pt-[7vh] mx-auto">
+		<Link to="/" class="text-lg {transformClass}">
+			<span>Alexander</span><span class="font-bold">Katrukhin</span>
+			<address class="text-[10px] leading-4 uppercase opacity-50 not-italic font-mono">
+				{#key positions[positionIndex]}
+					<span in:fly={{ y: -20 }} class="inline-block">{positions[positionIndex]}</span>
+				{/key}
+			</address>
+		</Link>
+
+		<!-- 
+		Navigation
+		<nav class="grid gap-[7vw] grid-cols-3 grid-rows-1 {transformClass}">
+			{#each nav as link}
+				<Link to={link.path}>{link.name}</Link>
+			{/each}
+		</nav> 
+		-->
+
+		<address class="flex flex-col not-italic {transformClass}">
+			<div class="flex justify-end">
+				<span class="mr-1 font-bold">425</span><span class="">390 9768</span>
+			</div>
+			<a href="mailto:apply@you-need-a-dev-like.me" class="font-mono tracking-tight text-xxs">
+				<span class="font-bold">apply</span>
+				<span class="-mr-[3px] -ml-[3px] opacity-60">@</span>
+				<span class="opacity-60">you-need-a-dev-like.me</span>
+			</a>
+		</address>
+	</div>
 </header>
+
+<style>
+	.apply-transform {
+		transform: translate3d(-3vw, -3vh, 0);
+	}
+</style>

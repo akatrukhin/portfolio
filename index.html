@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -10,12 +10,12 @@
 		<div id="app"></div>
 		<script type="module" src="/src/main.js"></script>
 		<script>
-			(async function () {
+			;(async function () {
 				if (CSS['paintWorklet'] === undefined) {
-					await import('https://unpkg.com/css-paint-polyfill');
+					await import('https://unpkg.com/css-paint-polyfill')
 				}
-				CSS.paintWorklet.addModule('./scripts/highlight.js');
-			})();
+				CSS.paintWorklet.addModule('./scripts/highlight.js')
+			})()
 		</script>
 	</body>
 </html>
