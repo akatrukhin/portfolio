@@ -6,7 +6,7 @@
 
 	let canvasRef
 
-	const LIGHT_LAYER_COLORS = ['rgb(204, 204, 204)', 'rgb(0, 0, 0)', 'rgb(255,255,255)']
+	const LIGHT_LAYER_COLORS = ['#000', 'rgb(204, 204, 204)', 'rgb(255,255,255)']
 	const AMOUNT_PATH_POINTS = 9
 	const PATH_POINT_DELAY = 250
 
