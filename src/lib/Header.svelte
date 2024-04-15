@@ -10,10 +10,11 @@
 	const UPDATE_INTERVAL_MS = 5000
 	const EMPTY_STRING = ''
 
-	$: scrolledLogoClasses =
-		scrollY > SCROLL_GAP ? '-translate-x-[3vw] -translate-y-[3vh] scale-90' : EMPTY_STRING
-	$: scrolledContactsClasses =
-		scrollY > SCROLL_GAP ? 'translate-x-[3vw] -translate-y-[3vh] scale-90' : EMPTY_STRING
+	$: collapsedLeftSideStyle =
+		scrollY > SCROLL_GAP ? '-translate-x-8 -translate-y-4 scale-95' : EMPTY_STRING
+	$: collapsedMiddleSideStyle = scrollY > SCROLL_GAP ? '-translate-y-4 scale-95' : EMPTY_STRING
+	$: collapsedRightSideStyle =
+		scrollY > SCROLL_GAP ? 'translate-x-8 -translate-y-4 scale-95' : EMPTY_STRING
 
 	const positions = [
 		'UX Engineer',
@@ -37,9 +38,12 @@
 	onDestroy(() => clearInterval(positionInterval))
 </script>
 
-<header class="backdrop-blur-lg top-0 sticky z-40 w-full text-sm">
-	<div class="flex items-center justify-between max-w-[1800px] px-[7vw] pt-[7vh] mx-auto z-10">
-		<Link to="/" class="text-2xl transform transition-transform duration-200 {scrolledLogoClasses}">
+<header class="top-0 sticky z-40 w-full text-sm backdrop-blur bg-zinc-100/80">
+	<div class="flex items-center justify-between max-w-screen-xl px-0 mb-4 pt-8 mx-auto z-10">
+		<Link
+			to="/"
+			class="text-2xl transform transition-transform duration-200 {collapsedLeftSideStyle}"
+		>
 			<span>Alexander</span><span class="font-bold">Katrukhin</span>
 			<address class="text-[10px] leading-4 opacity-50 not-italic font-mono">
 				{#key positions[positionIndex]}
@@ -61,15 +65,15 @@
 		</nav>
 		-->
 
-		<div class="flex items-center z-10">
+		<div
+			class="flex items-center z-10 transform transition-transform duration-200 {collapsedRightSideStyle}"
+		>
 			<button
 				class="mr-20 uppercase font-mono flex items-center gap-2 tracking-wide text-[10px] text-white rounded-lg bg-black px-6 py-2"
 			>
 				Resume
 			</button>
-			<address
-				class="flex flex-col not-italic transform transition-transform duration-200 {scrolledContactsClasses}"
-			>
+			<address class="flex flex-col not-italic">
 				<div class="flex justify-end">
 					<span class="mr-1 font-bold">425</span><span class="">390 9768</span>
 				</div>
