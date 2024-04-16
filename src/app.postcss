@@ -3,8 +3,19 @@
 @tailwind utilities;
 
 :root {
-	font-family: R, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
-		sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+	font-family:
+		'Aptos',
+		R,
+		-apple-system,
+		BlinkMacSystemFont,
+		'Segoe UI',
+		Roboto,
+		Helvetica,
+		Arial,
+		sans-serif,
+		'Apple Color Emoji',
+		'Segoe UI Emoji',
+		'Segoe UI Symbol';
 	font-size: 100%;
 
 	font-synthesis: none;
@@ -12,84 +23,11 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
+
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
-@font-face {
-	font-family: CPD;
-	src: url('./assets/fonts/cpd.woff2') format('woff2'),
-		url('./assets/fonts/cpd.woff') format('woff'), url('./assets/fonts/cpd.otf');
-}
-
-@font-face {
-	font-family: CPB;
-	src: url('./assets/fonts/cpb.woff2') format('woff2'),
-		url('./assets/fonts/cpb.woff') format('woff'), url('./assets/fonts/cpb.otf');
-}
-
-@font-face {
-	font-family: L;
-	src: url('./assets/fonts/l.woff2') format('woff2'), url('./assets/fonts/l.woff') format('woff'),
-		url('./assets/fonts/l.otf');
-}
-
-@font-face {
-	font-family: R;
-	src: url('./assets/fonts/r.woff2') format('woff2'), url('./assets/fonts/r.woff') format('woff'),
-		url('./assets/fonts/r.otf');
-}
-
-@font-face {
-	font-family: M;
-	src: url('./assets/fonts/m.woff2') format('woff2'), url('./assets/fonts/m.woff') format('woff'),
-		url('./assets/fonts/m.otf');
-}
-
-@font-face {
-	font-family: SB;
-	src: url('./assets/fonts/sb.woff2') format('woff2'), url('./assets/fonts/sb.woff') format('woff'),
-		url('./assets/fonts/sb.otf');
-}
-
-@font-face {
-	font-family: B;
-	src: url('./assets/fonts/b.woff2') format('woff2'), url('./assets/fonts/b.woff') format('woff'),
-		url('./assets/fonts/b.otf');
-}
-
-@font-face {
-	font-family: NB;
-	src: url('./assets/fonts/55.woff2') format('woff2'), url('./assets/fonts/55.woff') format('woff'),
-		url('./assets/fonts/55.ttf');
-}
-
-.cpd {
-	font-family: CPD;
-}
-
-.cpb {
-	font-family: CPB;
-}
-
-.l {
-	font-family: L;
-}
-
-.r {
-	font-family: R;
-}
-
-.b {
-	font-family: B;
-}
-
-.m {
-	font-family: M;
-}
-
-.sb {
-	font-family: SB;
-}
-
-.nb {
-	font-family: NB;
+::selection {
+	background-color: rgb(45 212 191);
+	text-shadow: none;
 }
