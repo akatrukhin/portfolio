@@ -51,25 +51,10 @@
 	]
 </script>
 
-<section class="relative flex flex-col pl-32 pr-20 mt-[12vh]" style="top: {-scrollY}px">
-	<!-- <h2
-		class="sticky top-8 text-2xl tracking-tight font-bold border-b pb-2 mb-8 -ml-4 leading-10 z-50"
-		>
-		Professional Experience
-	</h2> -->
-	<!-- <StickyHeaders> -->
-	<!-- <h2
-			bind:this={headers[0]}
-			class="sticky top-8 text-2xl tracking-tight font-bold pb-2 mb-8 -ml-4 leading-10 z-50 {stickyStates
-				? ''
-				: 'border-b'}"
-				>
-				Professional Experience {stickyStates ? 1 : 2}
-			</h2>
-			{#each EXPERIENCES as experience}
-			<ExperienceCard {experience} />
-			{/each} -->
-
+<section
+	class="relative flex flex-col pl-32 pr-20 mt-[12vh]"
+	style="top: -{scrollY < 300 ? scrollY : 300}px"
+>
 	<section class="mb-20">
 		<h2 class="sticky top-6 flex justify-between text-2xl tracking-tight font-bold leading-10 z-50">
 			Professional Experience
