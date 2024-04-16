@@ -42,6 +42,7 @@
 					{#each routes as page}
 						<Route path={page.route}>
 							<LazyComponent
+								{scrollY}
 								when={page.route === window.location.pathname}
 								component={() => import(`./routes/${page.name}.svelte`)}
 							/>

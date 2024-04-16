@@ -43,7 +43,7 @@
 	onDestroy(() => clearInterval(positionInterval))
 </script>
 
-<header id="header" class="top-0 sticky z-40 w-full text-sm px-12 backdrop-blur bg-zinc-100/80">
+<header id="header" class="top-0 sticky z-40 w-full text-sm px-12 backdrop-blur bg-zinc-100/95">
 	<div class="flex items-center justify-between px-0 mb-4 pt-8 mx-auto z-10">
 		<Link
 			to="/"
