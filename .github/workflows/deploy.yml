@@ -16,10 +16,10 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
 
-      - name: Use Node 16.x
+      - name: Use Node 20.3.0
         uses: actions/setup-node@v1
         with:
-          node-version: 16.9
+          node-version: 20.3.0
 
       - name: Install dependencies
         run: yarn
