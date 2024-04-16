@@ -1,20 +1,17 @@
 <script>
 	import { Link } from 'svelte-routing'
 	import { fly } from 'svelte/transition'
-	import { onDestroy } from 'svelte'
+	import { onDestroy, onMount } from 'svelte'
 	import cv from '../assets/img/cv.png'
 
 	export let scrollY
 
 	const SCROLL_GAP = 64
 	const UPDATE_INTERVAL_MS = 5000
-	const EMPTY_STRING = ''
 
-	$: collapsedLeftSideStyle =
-		scrollY > SCROLL_GAP ? '-translate-x-8 -translate-y-4 scale-95' : EMPTY_STRING
-	$: collapsedMiddleSideStyle = scrollY > SCROLL_GAP ? '-translate-y-4 scale-95' : EMPTY_STRING
-	$: collapsedRightSideStyle =
-		scrollY > SCROLL_GAP ? 'translate-x-8 -translate-y-4 scale-95' : EMPTY_STRING
+	$: scrolled = scrollY > SCROLL_GAP
+	$: totalContentHeight = 0
+	$: headerHeight = 0
 
 	const positions = [
 		'UX Engineer',
@@ -35,16 +32,42 @@
 		return Math.floor(Math.random() * length)
 	}
 
+	onMount(() => {
+		headerHeight = document.getElementById('header').offsetHeight
+		totalContentHeight =
+			Number(document.getElementById('content').offsetHeight) -
+			Number(window.innerHeight) +
+			Number(headerHeight)
+	})
+
 	onDestroy(() => clearInterval(positionInterval))
 </script>
 
-<header class="top-0 sticky z-40 w-full text-sm backdrop-blur bg-zinc-100/80">
-	<div class="flex items-center justify-between max-w-screen-xl px-0 mb-4 pt-8 mx-auto z-10">
+<header id="header" class="top-0 sticky z-40 w-full text-sm px-12 backdrop-blur bg-zinc-100/80">
+	<div class="flex items-center justify-between px-0 mb-4 pt-8 mx-auto z-10">
 		<Link
 			to="/"
-			class="text-2xl transform transition-transform duration-200 {collapsedLeftSideStyle}"
+			class="text-2xl transform transition-transform duration-200 {scrolled &&
+				'-translate-x-2 -translate-y-4 scale-90'}"
 		>
-			<span>Alexander</span><span class="font-bold">Katrukhin</span>
+			<div class="flex">
+				<div class="flex">
+					<span>Alex</span>
+					<span
+						class="transform transition-transform duration-200 origin-top-left {scrolled &&
+							'scale-x-0'}"
+					>
+						ander
+					</span>
+				</div>
+				<span
+					class="font-bold transform transition-transform duration-200 {scrolled &&
+						'-translate-x-[60px]'}"
+				>
+					Katrukhin
+				</span>
+			</div>
+
 			<address class="text-[10px] leading-4 opacity-50 not-italic font-mono">
 				{#key positions[positionIndex]}
 					<span
@@ -57,21 +80,23 @@
 		</Link>
 
 		<!--
-		Navigation
-		<nav class="grid gap-[7vw] grid-cols-3 grid-rows-1 {transformClass}">
-			{#each nav as link}
+			Navigation
+			<nav class="grid gap-[7vw] grid-cols-3 grid-rows-1 {transformClass}">
+				{#each nav as link}
 				<Link to={link.path}>{link.name}</Link>
-			{/each}
-		</nav>
+				{/each}
+			</nav>
 		-->
 
 		<div
-			class="flex items-center z-10 transform transition-transform duration-200 {collapsedRightSideStyle}"
+			class="flex items-center z-10 transform transition-transform duration-200 {scrolled &&
+				'translate-x-2 -translate-y-2 scale-95'}"
 		>
 			<button
-				class="mr-20 uppercase font-mono flex items-center gap-2 tracking-wide text-[10px] text-white rounded-lg bg-black px-6 py-2"
+				class="mr-20 uppercase font-mono flex items-center gap-2 tracking-wide text-[10px] border-b rounded-2xl bg-white px-6 py-2"
 			>
-				Resume
+				Download
+				<b>Resume</b>
 			</button>
 			<address class="flex flex-col not-italic">
 				<div class="flex justify-end">
@@ -84,6 +109,26 @@
 				</a>
 			</address>
 		</div>
+	</div>
+	<div class="relative -mb-px flex gap-4">
+		<!-- <div
+			class="absolute border-b-2 border-zinc-100 w-4 h-px font-mono transform transition-all ease-in-out duration-100 {scrolled
+				? 'opacity-100'
+				: 'opacity-0'}"
+			style="translate: {(scrollY / totalContentHeight).toFixed(2) *
+				100 *
+				(totalContentHeight / 26)}%"
+		></div> -->
+		<div
+			class="-mt-px bg-black h-[3px] transotion-all duration-200 ease-in-out w-36 {scrolled
+				? 'opacity-100'
+				: 'opacity-0'}"
+		></div>
+		<div
+			class="flex-1 bg-black h-px mix-blend-difference transotion-all duration-200 ease-in-out border-black/40 w-36 {scrolled
+				? 'opacity-100'
+				: 'opacity-0'}"
+		></div>
 	</div>
 </header>
 

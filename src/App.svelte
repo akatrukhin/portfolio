@@ -25,7 +25,7 @@
 	}, LOADING_MOUNT_DELAY + LOADING_ANIMATION_DURATION)
 </script>
 
-<div class="h-screen w-screen flex flex-col text-base selection:bg-teal-400">
+<div class="h-screen w-screen flex flex-col text-base">
 	{#if didLoadingComponentMount}
 		<div
 			class="flex flex-col h-screen w-screen overflow-x-hidden overflow-scroll bg-zinc-100"
@@ -38,7 +38,7 @@
 		>
 			<Router>
 				<Header {scrollY} />
-				<main class="max-w-[1560px] mx-auto w-full px-[9vw]">
+				<main id="content" class="max-w-screen-xl mx-auto w-full">
 					{#each routes as page}
 						<Route path={page.route}>
 							<LazyComponent

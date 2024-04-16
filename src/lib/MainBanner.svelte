@@ -27,7 +27,7 @@
 	}
 </script>
 
-<section class="relative mb-[16vh] pt-[15vh] flex">
+<section class="relative pt-[15vh] flex mb-10 pr-12 pl-24 gap-20">
 	<div class="flex flex-col">
 		<h1 class="text-4xl tracking-tight leading-10 relative">
 			<span class="flex items-center font-black relative z-10">
@@ -39,19 +39,16 @@
 			{/if}
 		</h1>
 
-		<div class="opacity-70 mt-14 mb-[11vh] ml-9 leading-8">
-			<p>
-				Adept at overseeing the complete product development cycle—from initial design through
-				front-end and back-end development to production deployment. My expertise lies in seamlessly
-				integrating design principles with technical development, ensuring the delivery of cohesive,
-				user-centric solutions that excel in functionality and user experience.
-			</p>
-		</div>
+		<p class="opacity-70 mt-14 mb-[11vh] max-w-3xl ml-9 leading-7">
+			Adept at overseeing the complete product development cycle—from initial design through
+			front-end and back-end development to production deployment. My expertise lies in seamlessly
+			integrating design principles with technical development, ensuring the delivery of cohesive,
+			user-centric solutions that excel in functionality and user experience.
+		</p>
 	</div>
 
-	<div class="w-full max-w-xs pl-6">
+	<!-- <div class="w-full max-w-xs min-w-80">
 		<div class="flex items-center text-lg">
-			<!-- SOMETHING -->
 		</div>
-	</div>
+	</div> -->
 </section>
