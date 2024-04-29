@@ -1,5 +1,5 @@
-import dynamicImportVars from '@rollup/plugin-dynamic-import-vars'
+import dynamicImportVars from "@rollup/plugin-dynamic-import-vars"
 
 export default {
-	plugins: [dynamicImportVars()]
+  plugins: [dynamicImportVars()],
 }

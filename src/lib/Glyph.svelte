@@ -32,7 +32,7 @@
     });
   }
 
-  onMount(initializeOrRandomizeChars);
+  onMount(initializeOrRandomizeChars);  
 </script>
 
 <svelte:element
@@ -44,7 +44,7 @@
   type={as === "button" ? type : undefined}
   tabindex="0"
   class={`glyph-animation grid content-stretch gap-0 items-stretch ${className}`}
-  style={`grid-template-columns: repeat(${chars.length}, 1fr);`}
+  style={`grid-template-columns: repeat(${chars.length}, 1fr); gap: 0`}
 >
   {#each chars as { char, index, className, char1, char2, char3 }}
     <span

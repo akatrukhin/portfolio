@@ -1,8 +1,8 @@
 <script>
-	import MainBanner from '../lib/MainBanner.svelte'
-	import ProfessionalExperience from '../lib/ProfessionalExperience.svelte'
+  import MainBanner from "../lib/MainBanner.svelte";
+  import ProfessionalExperience from "../lib/ProfessionalExperience.svelte";
 
-	export let scrollY
+  export let scrollY;
 </script>
 
 <MainBanner {scrollY} />

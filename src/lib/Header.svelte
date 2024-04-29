@@ -1,11 +1,16 @@
 <script>
+  import { onDestroy, onMount } from "svelte";
   import { Link } from "svelte-routing";
   import { fly } from "svelte/transition";
-  import { onDestroy, onMount } from "svelte";
   import GlyphAnimation from "./Glyph.svelte";
+  import Modal from './Modal.svelte';
   import cv from "../assets/img/cv.png";
+  
 
   export let scrollY;
+  let modals = {
+    cvModal: false
+  };
 
   const SCROLL_GAP = 64;
   const UPDATE_INTERVAL_MS = 5000;
@@ -58,7 +63,7 @@
         <div class="flex">
           <span>Alex</span>
           <span
-            class="transform transition-transform duration-200 origin-top-left {scrolled &&
+            class="transform lg:flex hidden transition-transform duration-200 origin-top-left {scrolled &&
               'scale-x-0'}"
           >
             ander
@@ -66,7 +71,7 @@
         </div>
         <span
           class="font-bold transform transition-transform duration-200 {scrolled &&
-            '-translate-x-[60px]'}"
+            '-translate-x-[54px]'}"
         >
           Katrukhin
         </span>
@@ -98,10 +103,26 @@
     >
       <GlyphAnimation
         as="button"
-        className="mr-20 uppercase font-mono flex items-center gap-2 tracking-wide text-[10px] border-b rounded-2xl bg-white px-6 py-2"
+        className="lg:mr-20 md:mr-10 mr-4 uppercase font-mono hidden md:grid items-center gap-2 tracking-wide text-[10px] border-b rounded-2xl bg-white px-6 py-2"
         text="Download Resume"
         styleRules={[{ from: 9, to: 15, className: "font-bold" }]}
-        >> Download Resume
+        onClick={() => {
+          modals.cvModal = true;
+        }}
+      >
+        Download Resume
+      </GlyphAnimation>
+
+      <GlyphAnimation
+        as="button"
+        className="md:hidden flex mr-4 uppercase font-mono font-bold items-center gap-2 tracking-wide text-[10px] border-b rounded-2xl bg-white px-6 py-2"
+        text="Resume"
+        styleRules={[{ from: 9, to: 15, className: "font-bold" }]}
+        onClick={() => {
+          modals.cvModal = true;
+        }}
+      >
+        Resume
       </GlyphAnimation>
 
       <address class="flex flex-col not-italic">
@@ -165,3 +186,8 @@
     </div>
   </div>
 {/if}
+
+<Modal id="cvModal" bind:modals>
+  <h2 slot="header" class="text-lg font-black">CrewGuru</h2>
+  <h4 slot="description" class="text-sm opacity-60 font-mono">Connects film and arts industries for jobs and services</h4>
+</Modal>
