@@ -8,10 +8,10 @@ const production = process.env.BUILD_ENV || false
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: production ? "https://you-need-a-dev-like.me" : "",
-  plugins: [
-    svelte({ preprocess: autoPreprocess() }),
-    typescript({ sourceMap: !production }),
-    dynamicImportVars,
-  ],
+	base: production ? "https://you-need-a-dev-like.me" : "",
+	plugins: [
+		svelte({ preprocess: autoPreprocess() }),
+		typescript({ sourceMap: !production }),
+		dynamicImportVars,
+	],
 })
