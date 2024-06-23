@@ -50,17 +50,18 @@
 
 <header
 	id="header"
-	class="top-0 sticky z-40 w-full text-sm max-w-screen-2xl mx-auto px-12 backdrop-blur bg-zinc-100/95"
+	class="top-0 sm:sticky hidden sm:block z-40 w-full text-sm max-w-screen-2xl mx-auto px-6 md:px-12 backdrop-blur bg-zinc-100/95"
 >
 	<div class="flex items-center justify-between px-0 mb-4 pt-8 mx-auto z-10">
 		<Link
 			to="/"
-			class="text-2xl transform transition-transform duration-200 {scrolled &&
+			class="
+			text-2xl transform rounded-xl focus:outline-none px-1.5 pt-0.5 pb-6 focus:ring focus:ring-[#2dd4bf] transition-transform duration-200 {scrolled &&
 				'-translate-x-2 -translate-y-4 scale-90'}"
 		>
-			<div class="flex">
+			<div class="flex" aria-atomic="true">
 				<div class="flex">
-					<span>Alex</span>
+					Alex
 					<span
 						class="transform lg:flex hidden transition-transform duration-200 origin-top-left {scrolled &&
 							'scale-x-0'}"
@@ -69,14 +70,16 @@
 					</span>
 				</div>
 				<span
-					class="font-bold transform transition-transform duration-200 {scrolled &&
+					class="font-bold flex transform transition-transform duration-200 {scrolled &&
 						'-translate-x-[54px]'}"
 				>
 					Katrukhin
 				</span>
 			</div>
 
-			<address class="text-[10px] leading-4 opacity-50 not-italic font-mono">
+			<div
+				class="text-[10px] whitespace-nowrap relative break-keep leading-4 opacity-50 not-italic font-mono"
+			>
 				{#key positions[positionIndex]}
 					<span
 						in:fly={{ y: -20, opacity: 0 }}
@@ -84,7 +87,7 @@
 						class="inline-block absolute">{positions[positionIndex]}</span
 					>
 				{/key}
-			</address>
+			</div>
 		</Link>
 
 		<!--
@@ -112,35 +115,18 @@
 				Download Resume
 			</GlyphAnimation>
 
-			<GlyphAnimation
-				as="button"
-				className="md:hidden flex mr-4 uppercase font-mono font-bold items-center gap-2 tracking-wide text-[10px] border-b rounded-2xl bg-white px-6 py-2"
-				text="Resume"
-				styleRules={[{ from: 9, to: 15, className: "font-bold" }]}
-				onClick={() => {
-					modals.cvModal = true
-				}}
-			>
-				Resume
-			</GlyphAnimation>
-
 			<address class="flex flex-col not-italic">
-				<div class="flex justify-end">
+				<a
+					class="flex self-end justify-end rounded-xl px-1.5 py-0.5 focus:outline-none focus:ring focus:ring-[#2dd4bf]"
+					href="https://6d39a73c7521.ngrok.app/assets/contact.vcf"
+					download
+				>
 					<span class="mr-1 font-bold">425</span><span class="">390 9768</span>
-				</div>
-				<!-- <a
-          href="mailto:apply@you-need-a-dev-like.me"
-          class="font-mono tracking-tight text-xxs"
-        >
-          <span class="font-bold">apply</span>
-          <span class="-mr-[3px] -ml-[3px] opacity-60">@</span>
-          <span class="opacity-60">you-need-a-dev-like.me</span>
-        </a> -->
-
+				</a>
 				<GlyphAnimation
 					as="a"
 					href="mailto:apply@you-need-a-dev-like.me?subject=✋%20Hey%20Alex!%20I%20need%20a%20dev!%20🚀"
-					className="font-mono tracking-tight text-xxs"
+					className="font-mono tracking-tight text-xxs rounded-xl px-1.5 py-0.5 focus:outline-none focus:ring focus:ring-[#2dd4bf]"
 					text="apply@you-need-a-dev-like.me"
 					styleRules={[
 						{ from: 1, to: 5, className: "font-bold" },
@@ -153,14 +139,6 @@
 		</div>
 	</div>
 	<div class="relative -mb-px flex gap-4">
-		<!-- <div
-		class="absolute border-b-2 border-zinc-100 w-4 h-px font-mono transform transition-all ease-in-out duration-100 {scrolled
-			? 'opacity-100'
-			: 'opacity-0'}"
-			style="translate: {(scrollY / totalContentHeight).toFixed(2) *
-				100 *
-				(totalContentHeight / 26)}%"
-				></div> -->
 		<div
 			class="-mt-px bg-black h-[3px] transotion-all duration-200 ease-in-out w-36 {scrolled
 				? 'opacity-100'

@@ -69,10 +69,7 @@
 	]
 </script>
 
-<section
-	class="relative flex flex-col pl-32 pr-20 mt-[12vh]"
-	style="top: -{scrollY < 300 ? scrollY : 300}px"
->
+<section class="relative flex flex-col pl-32 pr-20 mt-[12vh]">
 	<!-- <section>
 		<h2 class="sticky top-6 text-2xl tracking-tight font-bold leading-10 z-50">
 			Skills
